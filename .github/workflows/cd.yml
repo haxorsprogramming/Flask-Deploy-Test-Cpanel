@@ -21,9 +21,11 @@ jobs:
           port: 22
           script: |
             pkill gunicorn
-            /home/pythonApps
+            cd home/pythonApps
             rm -R Flask-Deploy-Test
             git clone https://github.com/haxorsprogramming/Flask-Deploy-Test
+            cd Flask-Deploy-Test
+            gunicorn --bind 0.0.0.0:7001 flask_app:app
             # rm -R microgaming
             # git clone https://${{ secrets.TOKEN }}@github.com/adnst1302/Microgaming_Seamless.git
             # git clone https://${{ secrets.TOKEN }}@github.com/adnst1302/YNX_SEAMLESS.git
