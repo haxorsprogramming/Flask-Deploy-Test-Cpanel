@@ -1,0 +1,39 @@
+name: cd
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  cd:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Deploy Using ssh
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: 22
+          script: |
+            pkill gunicorn
+            /home/pythonApps
+            rm -R Flask-Deploy-Test
+            git clone https://github.com/haxorsprogramming/Flask-Deploy-Test
+            # rm -R microgaming
+            # git clone https://${{ secrets.TOKEN }}@github.com/adnst1302/Microgaming_Seamless.git
+            # git clone https://${{ secrets.TOKEN }}@github.com/adnst1302/YNX_SEAMLESS.git
+            # mv Microgaming_Seamless/ microgaming/
+            # rm -R microgaming/sw_pb_php/
+            # cp -R sw_pb_php/ microgaming/sw_pb_php/
+            # cp .env_microgaming microgaming/.env
+            # chown -R www-data:www-data microgaming/
+            # chmod -R 755 microgaming/
+            # cd microgaming
+            # composer update
+            # php artisan migrate:refresh --seed
+            exit
