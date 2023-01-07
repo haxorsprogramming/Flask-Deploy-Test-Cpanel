@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block contents %}
+<div class="container mt-4">
+    <h3>Data Kategori</h2>
+    <br/>
+    <a href="javascript:void(0)" id="btnTambahDataKategori" class="btn btn-primary" onclick="showFormTambahKategori()">Tambah data kategori</a>
+    <div class="row" id="divDataKategori">
+        
+    </div>
+    <div class="row mt-3" id="divFormTambahKategori" style="display: none;">
+        <div class="col-6">
+            <div class="form-group">
+                <label>Nama Kategori</label>
+                <input type="text" class="form-control" id="txtNamaKategori">
+            </div>
+            <div class="form-group">
+                <label>Keterangan Kategori</label>
+                <textarea class="form-control" style="resize: none;" id="txtKeteranganKategori"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Kode / Nomor Rak</label>
+                <input type="text" class="form-control" id="txtKodeRak">
+            </div>
+            <br/>
+            <a href="javascript:void(0)" class="btn btn-primary">Proses tambah kategori</a>
+        </div>
+    </div>
+</div>
+<script>
+    var server = "{{ BASE_URL }}/proses-tambah-kategori";
+
+    function showFormTambahKategori()
+    {
+        $("#btnTambahDataKategori").hide();
+        $("#divFormTambahKategori").show();
+        document.querySelector("#txtNamaKategori").focus();
+    }
+</script>
+{% endblock contents %}
