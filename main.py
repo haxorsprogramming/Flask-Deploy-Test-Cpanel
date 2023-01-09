@@ -1,10 +1,11 @@
 from flask import Flask, redirect, url_for, render_template, request, jsonify
+from decouple import config
 
 import os
 import uuid
 import base64
 
-BASE_URL = os.getenv('SERVER_URL')
+BASE_URL = config('SERVER_URL')
 
 app = Flask(__name__)
 
